@@ -7,16 +7,17 @@ public class CurrencyConversionDto {
 	private CurrencyExchangeDto exchange;
 	private BigDecimal quantity;
 	private ConversionResult conversionResult;
+	private boolean feign;
 
 	public CurrencyConversionDto() {
 
 	}
-	
+
 	public CurrencyConversionDto(CurrencyExchangeDto exchange, BigDecimal quantity) {
 		this.exchange = exchange;
 		this.quantity = quantity;
-		CurrencyConversionDto.ConversionResult result = 
-				new CurrencyConversionDto.ConversionResult(exchange.getTo(), quantity.multiply(exchange.getExchangeRate()));
+		CurrencyConversionDto.ConversionResult result = new CurrencyConversionDto.ConversionResult(exchange.getTo(),
+				quantity.multiply(exchange.getExchangeRate()));
 		this.conversionResult = result;
 	}
 
@@ -42,6 +43,14 @@ public class CurrencyConversionDto {
 
 	public void setConversionResult(ConversionResult conversionResult) {
 		this.conversionResult = conversionResult;
+	}
+
+	public boolean isFeign() {
+		return feign;
+	}
+
+	public void setFeign(boolean feign) {
+		this.feign = feign;
 	}
 
 	private class ConversionResult {
