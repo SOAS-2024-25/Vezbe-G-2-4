@@ -34,7 +34,11 @@ public class ApiGatewayAuthentication {
 	
 	@Bean
 	ReactiveUserDetailsService reactiveUserDetailsService(WebClient.Builder webClientBuilder, BCryptPasswordEncoder encoder) {
-		WebClient client = webClientBuilder.baseUrl("http://localhost:8770").build();
+//		WebClient client = webClientBuilder.baseUrl("http://localhost:8770").build();
+
+//				Verzija za Docker
+		WebClient client = webClientBuilder.baseUrl("http://users-service:8770").build();
+		
 		
 		return user -> client.get()
 				.uri(uriBuilder -> uriBuilder
